@@ -1,7 +1,7 @@
 # Mix & Blooms — Android App (Test Build)
 
 This page is for installing the **Mix & Blooms** Android app for testing.
-**For Android phones.** Customers, florists and shop owners can use the app. Florists and shop owners can also use the web version at https://mixblooms-ea632.web.app.
+**For Android phones.** Customers, Shop Owners and Florists can use the app. Shop Owners and Florists can also use the web version at https://mixblooms-ea632.web.app.
 
 ## Download
 
