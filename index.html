@@ -393,9 +393,8 @@ footer .dot{margin:0 8px;opacity:.5}
     .then(function (r) { return r.ok ? r.json() : null; })
     .then(function (rel) {
       if (!rel) return;
-      var m = /\(build (\d+)\)/.exec(rel.name || '');
       var ver = (rel.tag_name || '').replace(/^v/, '').replace(/-build\d+$/, '');
-      if (ver) document.getElementById('version').textContent = ver + (m ? ' · build ' + m[1] : '');
+      if (ver) document.getElementById('version').textContent = ver;
       var apk = (rel.assets || []).filter(function (a) { return a.name === 'mix-and-blooms.apk'; })[0];
       if (apk) document.getElementById('size').textContent = Math.round(apk.size / 1048576) + ' MB';
     })
