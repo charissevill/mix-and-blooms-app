@@ -195,7 +195,7 @@ footer .dot{margin:0 8px;opacity:.5}
 </div>
 <script>
   // Hide the loader once the page has loaded, but keep it up long enough to
-  // actually see the flower (~1.2s), and never longer than 6s in case
+  // actually see the flower (5s), and never longer than 9s in case
   // something (fonts, the animation library) is slow or blocked.
   (function () {
     var shownAt = Date.now(), done = false;
@@ -206,9 +206,9 @@ footer .dot{margin:0 8px;opacity:.5}
       setTimeout(function () { s.remove(); }, 600);
     }
     window.addEventListener('load', function () {
-      setTimeout(hide, Math.max(0, 1200 - (Date.now() - shownAt)));
+      setTimeout(hide, Math.max(0, 5000 - (Date.now() - shownAt)));
     });
-    setTimeout(hide, 6000);
+    setTimeout(hide, 9000);
     document.addEventListener('DOMContentLoaded', function () {
       if (!window.lottie) return;
       window.lottie.loadAnimation({
