@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Download Mix &amp; Blooms</title>
+<meta name="description" content="Download the Mix & Blooms Android app. Design bouquets with AI and order from local florists.">
+<meta name="theme-color" content="#E996B7">
+<link rel="icon" href="logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Nunito+Sans:wght@400;600;700&display=swap">
+<style>
+:root{
+  --bg:#FCF7EC; --card:#FFFFFF; --text:#3B3340; --muted:#7A6F7E; --line:#EFE3E6;
+  --pink:#E996B7; --pink-deep:#C9648C; --pink-soft:#FBE7EF; --leaf:#4E8F6A;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--bg);color:var(--text);font:16px/1.6 "Nunito Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  padding:max(24px,env(safe-area-inset-top)) 16px max(32px,env(safe-area-inset-bottom))}
+main{max-width:460px;margin:0 auto;display:flex;flex-direction:column;gap:20px}
+h1,h2{font-family:"Playfair Display",Georgia,serif;margin:0;text-wrap:balance}
+.hero{text-align:center;display:flex;flex-direction:column;align-items:center;gap:10px}
+.hero img{width:180px;height:auto;border-radius:24px}
+.tagline{margin:0;color:var(--muted);font-size:1.02rem;max-width:32ch}
+
+.card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:22px 20px}
+
+.download{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;
+  background:var(--pink-deep);color:#fff;text-decoration:none;font-weight:700;font-size:1.15rem;
+  padding:18px 20px;border-radius:14px;box-shadow:0 6px 18px rgba(201,100,140,.28);transition:transform .15s,box-shadow .15s}
+.download:hover{transform:translateY(-1px);box-shadow:0 8px 22px rgba(201,100,140,.34)}
+.download:active{transform:translateY(1px)}
+.download:focus-visible{outline:3px solid var(--text);outline-offset:3px}
+.download svg{width:22px;height:22px;flex:none}
+.facts{display:flex;flex-wrap:wrap;justify-content:center;gap:6px 14px;margin:14px 0 0;padding:0;list-style:none;font-size:.88rem;color:var(--muted)}
+.facts b{color:var(--text);font-weight:600}
+
+.ios{display:none;background:var(--pink-soft);border-radius:14px;padding:14px 16px;font-size:.95rem;margin-bottom:14px}
+.ios.show{display:block}
+.ios a{color:var(--pink-deep);font-weight:700}
+
+h2{font-size:1.25rem;margin-bottom:12px}
+ol.steps{list-style:none;counter-reset:s;margin:0;padding:0;display:flex;flex-direction:column;gap:14px}
+ol.steps li{counter-increment:s;display:grid;grid-template-columns:32px 1fr;gap:12px;align-items:start}
+ol.steps li::before{content:counter(s);display:grid;place-items:center;width:32px;height:32px;border-radius:50%;
+  background:var(--pink-soft);color:var(--pink-deep);font-weight:700;font-size:.95rem}
+ol.steps b{display:block}
+ol.steps span{color:var(--muted);font-size:.93rem}
+
+details{border-top:1px solid var(--line);padding:12px 0}
+details:first-of-type{border-top:0;padding-top:0}
+summary{cursor:pointer;font-weight:600}
+details p{margin:8px 0 0;color:var(--muted);font-size:.93rem}
+
+footer{text-align:center;font-size:.85rem;color:var(--muted)}
+footer a{color:var(--pink-deep)}
+@media (prefers-reduced-motion:reduce){.download{transition:none}}
+</style>
+</head>
+<body>
+<main>
+  <header class="hero">
+    <img src="logo.png" alt="Mix &amp; Blooms logo" width="180" height="180">
+    <p class="tagline">Design bouquets with AI and order from local florists.</p>
+  </header>
+
+  <section class="card" aria-label="Download">
+    <div class="ios" id="ios">
+      This app is for <b>Android phones</b>. On iPhone, use the web version instead:<br>
+      <a href="https://mixblooms-ea632.web.app">mixblooms-ea632.web.app</a>
+    </div>
+    <a class="download" id="download" href="https://github.com/charissevill/mix-and-blooms-app/releases/latest/download/mix-and-blooms.apk">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11"/><path d="m7 10 5 5 5-5"/><path d="M5 20h14"/></svg>
+      Download for Android
+    </a>
+    <ul class="facts">
+      <li>Version <b id="version">latest</b></li>
+      <li>Size <b id="size">about 150 MB</b></li>
+      <li>Needs <b>Android 7.0+</b></li>
+    </ul>
+  </section>
+
+  <section class="card">
+    <h2>How to install</h2>
+    <ol class="steps">
+      <li><div><b>Tap Download for Android</b><span>Wait for the download to finish. Use Wi-Fi if you can.</span></div></li>
+      <li><div><b>Open the file</b><span>Tap <b>Open</b> on the download message, or find <i>mix-and-blooms.apk</i> in your Downloads.</span></div></li>
+      <li><div><b>Allow the install</b><span>If your phone blocks it, tap <b>Settings</b>, turn on <b>Allow from this source</b>, then go back.</span></div></li>
+      <li><div><b>Install and open</b><span>Tap <b>Install</b>. If Play Protect shows a warning, tap <b>More details → Install anyway</b>.</span></div></li>
+    </ol>
+  </section>
+
+  <section class="card">
+    <h2>Having trouble?</h2>
+    <details>
+      <summary>It says "App not installed"</summary>
+      <p>Uninstall the Mix &amp; Blooms app that's already on your phone, then install again.</p>
+    </details>
+    <details>
+      <summary>The download stopped</summary>
+      <p>Check your internet connection and tap Download again.</p>
+    </details>
+    <details>
+      <summary>How do I update the app?</summary>
+      <p>Open this page again and tap Download. Installing the new file updates your app.</p>
+    </details>
+  </section>
+
+  <footer>
+    Test build · <a href="https://github.com/charissevill/mix-and-blooms-app/releases/latest">Release notes</a>
+  </footer>
+</main>
+
+<script>
+  // iPhone/iPad can't install an APK — point them to the web app instead.
+  if (/iPhone|iPad|iPod/i.test(navigator.userAgent) ||
+      (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1)) {
+    document.getElementById('ios').classList.add('show');
+  }
+
+  // Show the real version and size of the newest release. If GitHub can't be
+  // reached, the page keeps its generic text and the button still works.
+  fetch('https://api.github.com/repos/charissevill/mix-and-blooms-app/releases/latest')
+    .then(function (r) { return r.ok ? r.json() : null; })
+    .then(function (rel) {
+      if (!rel) return;
+      var m = /\(build (\d+)\)/.exec(rel.name || '');
+      var ver = (rel.tag_name || '').replace(/^v/, '').replace(/-build\d+$/, '');
+      if (ver) document.getElementById('version').textContent = ver + (m ? ' (build ' + m[1] + ')' : '');
+      var apk = (rel.assets || []).filter(function (a) { return a.name === 'mix-and-blooms.apk'; })[0];
+      if (apk) document.getElementById('size').textContent = Math.round(apk.size / 1048576) + ' MB';
+    })
+    .catch(function () {});
+</script>
+</body>
+</html>

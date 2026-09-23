@@ -5,7 +5,7 @@ This page is for installing the **Mix & Blooms** Android app for testing.
 
 ## Download
 
-👉 **[Get the latest version](https://github.com/charissevill/mix-and-blooms-app/releases/latest)**
+👉 **[Download page](https://charissevill.github.io/mix-and-blooms-app/)** · [All releases](https://github.com/charissevill/mix-and-blooms-app/releases/latest)
 
 ## How to install
 
@@ -25,7 +25,7 @@ Scan the same QR code again and install the newest file. It updates the app you 
 
 | Problem | What to do |
 |---|---|
-| QR code won't scan | Type this link in your browser: `github.com/charissevill/mix-and-blooms-app/releases/latest` |
+| QR code won't scan | Type this link in your browser: `charissevill.github.io/mix-and-blooms-app` |
 | Download stops | Check your internet and download again. |
 | "Install blocked" | Allow installs from your browser (step 3). |
 | "App not installed" | Make sure you downloaded the newest file. If it still fails, uninstall Mix & Blooms first, then install again. |
