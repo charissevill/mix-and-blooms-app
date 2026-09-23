@@ -104,8 +104,40 @@ h2{font-family:var(--serif);font-weight:700;font-size:1.35rem;margin:0 0 16px;te
 .steps li:last-child::after{display:none}
 .num{width:36px;height:36px;border-radius:50%;background:var(--blush);color:var(--rose);font-weight:800;display:grid;place-items:center;font-size:.95rem}
 .steps li:last-child .num{background:var(--leaf);color:#fff}
-.steps b{display:block;line-height:1.35;margin-top:6px}
+.steps li>div>b{display:block;line-height:1.35;margin-top:6px}
 .steps .d{display:block;color:var(--muted);font-size:.92rem;margin-top:2px}
+.intro{margin:-6px 0 18px;color:var(--muted);font-size:.93rem}
+.intro b{color:var(--leaf)}
+.hint{display:block;margin-top:8px;font-size:.84rem;color:var(--muted)}
+.note{margin:16px 0 0;font-size:.8rem;color:var(--muted);text-align:center;font-style:italic}
+
+/* little "what you'll see" previews */
+.mock{margin-top:10px;background:#F3EEF2;border-radius:16px;padding:12px;display:flex;flex-direction:column;align-items:stretch;gap:8px;
+  font-size:.84rem;color:var(--ink)}
+.m-btn{align-self:flex-start;background:var(--rose);color:#fff;font-weight:800;padding:9px 16px;border-radius:12px}
+.m-row{display:flex;align-items:center;justify-content:space-between;gap:10px;background:#fff;border-radius:12px;padding:10px 12px;box-shadow:0 2px 8px rgba(60,30,50,.08)}
+.m-file{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.m-link{font-weight:800;color:#1a73e8;padding:2px 8px;border-radius:8px}
+.m-dialog{background:#fff;border-radius:14px;padding:12px 14px;box-shadow:0 2px 8px rgba(60,30,50,.08)}
+.m-dialog p{margin:0 0 10px;line-height:1.45}
+.m-actions{display:flex;justify-content:flex-end;gap:14px;font-weight:800;color:#1a73e8}
+.m-actions span{padding:3px 8px;border-radius:8px}
+.m-actions span:first-child{color:var(--muted)}
+.m-app{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.m-app img{border-radius:8px}
+.m-arrow{text-align:center;font-size:.75rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.m-toggle{display:flex;align-items:center;justify-content:space-between;gap:10px;font-weight:700}
+.sw{flex:none;width:40px;height:22px;border-radius:999px;background:var(--leaf);position:relative}
+.sw i{position:absolute;right:3px;top:3px;width:16px;height:16px;border-radius:50%;background:#fff}
+.m-home{align-items:center;background:linear-gradient(160deg,#F7D9E6,#DDEDE2)}
+.m-icon{display:flex;flex-direction:column;align-items:center;gap:4px;font-size:.75rem;font-weight:700}
+.m-icon img{border-radius:14px;background:#fff;box-shadow:0 2px 8px rgba(60,30,50,.15)}
+/* "tap here" highlight */
+.tap,.tap-ring{position:relative;box-shadow:0 0 0 3px #fff,0 0 0 5px var(--rose)}
+.m-btn.tap{box-shadow:0 0 0 3px #F3EEF2,0 0 0 5px var(--rose)}
+.tap::after,.tap-ring::after{content:"Tap";position:absolute;top:-24px;right:-6px;background:var(--rose);color:#fff;
+  font-size:.66rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;padding:1px 7px;border-radius:999px;white-space:nowrap}
+.mock:has(.tap),.mock:has(.tap-ring){padding-top:26px}
 .kbd{display:inline-block;background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:0 6px;font-weight:700;color:var(--ink);font-size:.86rem}
 
 details{border-top:1px solid var(--line)}
@@ -190,12 +222,61 @@ footer .dot{margin:0 8px;opacity:.5}
     <aside class="side">
       <section class="card" aria-labelledby="how">
         <h2 id="how">How to install</h2>
+        <p class="intro">5 easy steps. Your phone may show a warning along the way. <b>That's normal</b>: it happens because the app is not from the Play Store yet.</p>
         <ol class="steps">
-          <li><span class="num">1</span><div><b>Tap Download for Android</b><span class="d">Wait for the download to finish. Wi-Fi is faster.</span></div></li>
-          <li><span class="num">2</span><div><b>Open the file</b><span class="d">Tap <span class="kbd">Open</span> on the download message, or find <i>mix-and-blooms.apk</i> in Downloads.</span></div></li>
-          <li><span class="num">3</span><div><b>Allow the install</b><span class="d">If your phone blocks it, tap <span class="kbd">Settings</span> and turn on <span class="kbd">Allow from this source</span>, then go back.</span></div></li>
-          <li><span class="num">4</span><div><b>Install and open</b><span class="d">Tap <span class="kbd">Install</span>. If Play Protect warns you, tap <span class="kbd">More details</span> → <span class="kbd">Install anyway</span>.</span></div></li>
+          <li><span class="num">1</span><div>
+            <b>Tap the pink Download button</b>
+            <span class="d">The download is about 150 MB, so use Wi-Fi if you can.</span>
+            <div class="mock" aria-hidden="true">
+              <div class="m-btn tap">↓ Download for Android</div>
+            </div>
+          </div></li>
+
+          <li><span class="num">2</span><div>
+            <b>Open the file when it's done</b>
+            <span class="d">A message appears at the bottom of your screen. Tap <span class="kbd">Open</span>.</span>
+            <div class="mock" aria-hidden="true">
+              <div class="m-row"><span class="m-file">📦 mix-and-blooms.apk</span><span class="m-link tap">Open</span></div>
+            </div>
+            <span class="hint">Missed it? Open your browser's menu (⋮) → <b>Downloads</b> and tap the file.</span>
+          </div></li>
+
+          <li><span class="num">3</span><div>
+            <b>Allow your phone to install it</b>
+            <span class="d">If your phone says it can't install apps from this source, tap <span class="kbd">Settings</span>, turn the switch <b>on</b>, then tap the back arrow.</span>
+            <div class="mock" aria-hidden="true">
+              <div class="m-dialog">
+                <p>For your security, your phone is not allowed to install unknown apps from this source.</p>
+                <div class="m-actions"><span>Cancel</span><span class="tap">Settings</span></div>
+              </div>
+              <div class="m-arrow">then</div>
+              <div class="m-dialog m-toggle"><span>Allow from this source</span><span class="sw tap-ring"><i></i></span></div>
+            </div>
+            <span class="hint">You only need to do this once.</span>
+          </div></li>
+
+          <li><span class="num">4</span><div>
+            <b>Tap Install</b>
+            <span class="d">Your phone asks if you want to install Mix &amp; Blooms. Tap <span class="kbd">Install</span> and wait a few seconds.</span>
+            <div class="mock" aria-hidden="true">
+              <div class="m-dialog">
+                <div class="m-app"><img src="logo.png" alt="" width="28" height="28"><b>Mix &amp; Blooms</b></div>
+                <p>Do you want to install this app?</p>
+                <div class="m-actions"><span>Cancel</span><span class="tap">Install</span></div>
+              </div>
+            </div>
+            <span class="hint">If a Play Protect warning appears, tap <b>More details</b> → <b>Install anyway</b>.</span>
+          </div></li>
+
+          <li><span class="num">✓</span><div>
+            <b>Tap Open, and you're done!</b>
+            <span class="d">Next time, find <b>Mix &amp; Blooms</b> on your home screen.</span>
+            <div class="mock m-home" aria-hidden="true">
+              <div class="m-icon"><img src="logo.png" alt="" width="52" height="52"><span>Mix &amp; Blooms</span></div>
+            </div>
+          </div></li>
         </ol>
+        <p class="note">Screens may look a little different depending on your phone brand.</p>
       </section>
 
       <section class="card qr" aria-label="Open on your phone">
