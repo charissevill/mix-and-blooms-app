@@ -177,9 +177,48 @@ footer .dot{margin:0 8px;opacity:.5}
 .hero>*,.side>*{animation:rise .5s ease both}
 .side>*:nth-child(2){animation-delay:.05s}.side>*:nth-child(3){animation-delay:.1s}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
+/* opening loader — same flower animation the app uses */
+.splash{position:fixed;inset:0;z-index:100;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;
+  background:radial-gradient(circle at 50% 42%,#FFF 0,var(--bg) 60%);transition:opacity .45s ease,visibility .45s ease}
+.splash.hide{opacity:0;visibility:hidden}
+.splash-flower{width:150px;height:150px}
+.splash-name{font-family:var(--serif);font-weight:700;font-size:1.25rem;color:var(--rose);letter-spacing:.01em}
+.splash-sub{font-size:.85rem;color:var(--muted)}
 </style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie_light.min.js" defer></script>
 </head>
 <body>
+<div class="splash" id="splash" role="status" aria-label="Loading">
+  <div class="splash-flower" id="splash-flower"></div>
+  <div class="splash-name">Mix &amp; Blooms</div>
+  <div class="splash-sub">Loading…</div>
+</div>
+<script>
+  // Hide the loader once the page has loaded, but keep it up long enough to
+  // actually see the flower (~1.2s), and never longer than 6s in case
+  // something (fonts, the animation library) is slow or blocked.
+  (function () {
+    var shownAt = Date.now(), done = false;
+    function hide() {
+      if (done) return; done = true;
+      var s = document.getElementById('splash');
+      s.classList.add('hide');
+      setTimeout(function () { s.remove(); }, 600);
+    }
+    window.addEventListener('load', function () {
+      setTimeout(hide, Math.max(0, 1200 - (Date.now() - shownAt)));
+    });
+    setTimeout(hide, 6000);
+    document.addEventListener('DOMContentLoaded', function () {
+      if (!window.lottie) return;
+      window.lottie.loadAnimation({
+        container: document.getElementById('splash-flower'),
+        renderer: 'svg', loop: true, autoplay: true,
+        path: 'loading_flower.json'
+      });
+    });
+  })();
+</script>
 <div class="bloom" aria-hidden="true"><i></i><i></i><i></i></div>
 
 <div class="wrap">
