@@ -81,7 +81,10 @@ h1 em{font-style:italic;color:var(--rose);font-weight:600}
 .who .tag{font-size:.74rem;font-weight:800;padding:2px 9px;border-radius:999px;background:var(--blush);color:var(--rose)}
 .who .tag.web{background:var(--leaf-soft);color:var(--leaf)}
 .who p{margin:0;font-size:.84rem;color:var(--muted);line-height:1.45}
-.who a{font-weight:700;word-break:break-word}
+.who .web-btn{margin-top:auto;white-space:nowrap;display:inline-flex;align-items:center;justify-content:center;gap:6px;align-self:stretch;text-decoration:none;
+  background:var(--leaf);color:#fff;font-weight:800;font-size:.86rem;padding:9px 12px;border-radius:12px;box-shadow:0 4px 12px rgba(78,143,106,.25);transition:transform .15s ease}
+.who .web-btn:hover{transform:translateY(-1px)}
+.who .web-btn svg{width:15px;height:15px;flex:none}
 
 /* features */
 .features{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:0;padding:0;list-style:none;width:100%}
@@ -249,7 +252,8 @@ footer .dot{margin:0 8px;opacity:.5}
         <li><span class="role">Customers</span><span class="how"><span class="tag">Android app</span></span>
           <p>Design, order and track your floral arrangements.</p></li>
         <li><span class="role">Shop Owners &amp; Florists</span><span class="how"><span class="tag">Android app</span><span class="tag web">Web</span></span>
-          <p>Use this app, or sign in on the web at <a href="https://mixblooms-ea632.web.app">mixblooms-ea632.web.app</a></p></li>
+          <p>Use this app, or sign in on the web with the same account.</p>
+          <a class="web-btn" href="https://mixblooms-ea632.web.app" target="_blank" rel="noopener">Open web app<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg></a></li>
       </ul>
 
       <p class="sec-label">What you can do</p>
