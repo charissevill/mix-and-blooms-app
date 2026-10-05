@@ -95,6 +95,7 @@ h1 em{font-style:italic;color:var(--rose);font-weight:600}
 .ic.p{background:var(--blush);color:var(--rose)}
 .ic.g{background:var(--leaf-soft);color:var(--leaf)}
 .ic.s{background:#FDF0D8;color:#B7791F}
+.features li:last-child:nth-child(odd){grid-column:1/-1}
 .features b{font-size:.95rem;line-height:1.3}
 .features span{font-size:.84rem;color:var(--muted);line-height:1.45}
 .sec-label{font-size:.76rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:10px 0 -8px;align-self:stretch;text-align:left}
@@ -242,7 +243,7 @@ footer .dot{margin:0 8px;opacity:.5}
         </a>
         <ul class="chips">
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 12 12 20l-8-8V4h8z"/><circle cx="8.5" cy="8.5" r="1.2"/></svg>Version <b id="version">latest</b></li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16v10H4z"/><path d="M8 7V5h8v2"/></svg><b id="size">about 150 MB</b></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16v10H4z"/><path d="M8 7V5h8v2"/></svg><b id="size">about 159 MB</b></li>
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="7" y="2.5" width="10" height="19" rx="2"/><path d="M11 18h2"/></svg>Android <b>10+</b></li>
         </ul>
       </div>
@@ -260,7 +261,9 @@ footer .dot{margin:0 8px;opacity:.5}
       <ul class="features">
         <li><span class="ic p"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v3M12 18v3M3 12h3M18 12h3"/><path d="m12 8 1.2 2.8L16 12l-2.8 1.2L12 16l-1.2-2.8L8 12l2.8-1.2z"/></svg></span>
           <b>AI floral designer</b><span>Pick flowers, colors and budget. See your arrangement before you order.</span></li>
-        <li><span class="ic g"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 3 8 4.5v9L12 21l-8-4.5v-9z"/><path d="M12 12 4 7.5M12 12l8-4.5M12 12v9"/></svg></span>
+        <li><span class="ic g"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v18M3 12h18"/><path d="m9 6 3-3 3 3M9 18l3 3 3-3M6 9l-3 3 3 3M18 9l3 3-3 3"/></svg></span>
+          <b>Drag-and-drop studio</b><span>Prefer to do it by hand? Drag flowers onto the canvas and arrange them your way.</span></li>
+        <li><span class="ic s"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 3 8 4.5v9L12 21l-8-4.5v-9z"/><path d="M12 12 4 7.5M12 12l8-4.5M12 12v9"/></svg></span>
           <b>3D preview</b><span>Turn your saved design around and view it from every side.</span></li>
         <li><span class="ic s"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg></span>
           <b>Local florists</b><span>Find shops near you and buy ready-made arrangements.</span></li>
@@ -276,7 +279,7 @@ footer .dot{margin:0 8px;opacity:.5}
         <ol class="steps">
           <li><span class="num">1</span><div>
             <b>Tap the pink Download button</b>
-            <span class="d">The download is about 150 MB, so use Wi-Fi if you can.</span>
+            <span class="d">The download is <span id="size-step">about 159 MB</span>, so use Wi-Fi if you can.</span>
             <div class="mock" aria-hidden="true">
               <div class="m-btn tap">↓ Download for Android</div>
             </div>
@@ -400,7 +403,11 @@ footer .dot{margin:0 8px;opacity:.5}
       var ver = (rel.tag_name || '').replace(/^v/, '').replace(/-build\d+$/, '');
       if (ver) document.getElementById('version').textContent = ver;
       var apk = (rel.assets || []).filter(function (a) { return a.name === 'mix-and-blooms.apk'; })[0];
-      if (apk) document.getElementById('size').textContent = Math.round(apk.size / 1048576) + ' MB';
+      if (apk) {
+        var mb = Math.round(apk.size / 1048576) + ' MB';
+        document.getElementById('size').textContent = mb;
+        document.getElementById('size-step').textContent = mb;
+      }
     })
     .catch(function () {});
 </script>
