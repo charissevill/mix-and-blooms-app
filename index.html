@@ -180,6 +180,23 @@ footer .dot{margin:0 8px;opacity:.5}
 @keyframes rise{from{transform:translateY(8px)}to{transform:none}}
 .hero>*,.side>*{animation:rise .5s ease both}
 .side>*:nth-child(2){animation-delay:.05s}.side>*:nth-child(3){animation-delay:.1s}
+/* living touches: floating logo, drifting background, button shine, moving drag icon */
+@keyframes float{0%,100%{transform:none}50%{transform:translateY(-7px)}}
+.hero>.logo{animation:rise .5s ease both,float 5s ease-in-out .5s infinite}
+@keyframes drift{0%,100%{transform:none}50%{transform:translate(26px,18px) scale(1.08)}}
+.bloom i{animation:drift 16s ease-in-out infinite}
+.bloom i:nth-child(2){animation-duration:20s;animation-direction:reverse}
+.bloom i:nth-child(3){animation-duration:24s}
+.btn{position:relative;overflow:hidden}
+.btn::after{content:"";position:absolute;top:0;bottom:0;left:-60%;width:45%;pointer-events:none;
+  background:linear-gradient(100deg,transparent,rgba(255,255,255,.38),transparent);transform:skewX(-18deg);
+  animation:shine 4.5s ease-in-out 1.5s infinite}
+@keyframes shine{0%{left:-60%}35%,100%{left:130%}}
+@keyframes nudge{0%,100%{transform:none}25%{transform:translate(3px,-3px)}75%{transform:translate(-3px,3px)}}
+.ic.move svg{animation:nudge 2.6s ease-in-out infinite}
+/* cards slide in as you scroll to them (class is added by script, so no script = always visible) */
+.rv{opacity:0;transform:translateY(16px);transition:opacity .55s ease,transform .55s ease}
+.rv.in{opacity:1;transform:none}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
 /* opening loader — same flower animation the app uses */
 .splash{position:fixed;inset:0;z-index:100;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;
@@ -207,6 +224,7 @@ footer .dot{margin:0 8px;opacity:.5}
       if (done) return; done = true;
       var s = document.getElementById('splash');
       s.classList.add('hide');
+      document.dispatchEvent(new Event('splash-done'));
       setTimeout(function () { s.remove(); }, 600);
     }
     window.addEventListener('load', function () {
@@ -261,7 +279,7 @@ footer .dot{margin:0 8px;opacity:.5}
       <ul class="features">
         <li><span class="ic p"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v3M12 18v3M3 12h3M18 12h3"/><path d="m12 8 1.2 2.8L16 12l-2.8 1.2L12 16l-1.2-2.8L8 12l2.8-1.2z"/></svg></span>
           <b>AI floral designer</b><span>Pick flowers, colors and budget. See your arrangement before you order.</span></li>
-        <li><span class="ic g"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v18M3 12h18"/><path d="m9 6 3-3 3 3M9 18l3 3 3-3M6 9l-3 3 3 3M18 9l3 3-3 3"/></svg></span>
+        <li><span class="ic g move"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v18M3 12h18"/><path d="m9 6 3-3 3 3M9 18l3 3 3-3M6 9l-3 3 3 3M18 9l3 3-3 3"/></svg></span>
           <b>Drag-and-drop studio</b><span>Prefer to do it by hand? Drag flowers onto the canvas and arrange them your way.</span></li>
         <li><span class="ic s"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 3 8 4.5v9L12 21l-8-4.5v-9z"/><path d="M12 12 4 7.5M12 12l8-4.5M12 12v9"/></svg></span>
           <b>3D preview</b><span>Turn your saved design around and view it from every side.</span></li>
@@ -382,6 +400,35 @@ footer .dot{margin:0 8px;opacity:.5}
       bar.setAttribute('aria-hidden', hidden ? 'false' : 'true');
     }).observe(document.getElementById('download'));
   }
+
+  // Cards slide in when they scroll into view, starting once the loader is gone.
+  // Only cards still below the screen are hidden, so nothing visible ever disappears.
+  (function () {
+    if (matchMedia('(prefers-reduced-motion:reduce)').matches) return;
+    var items = [].slice.call(document.querySelectorAll('.who li,.features li,.steps li'));
+    var started = false;
+    function check() {
+      items.forEach(function (el) {
+        if (!el.classList.contains('rv') || el.classList.contains('in')) return;
+        if (el.getBoundingClientRect().top < window.innerHeight * 0.94) el.classList.add('in');
+      });
+    }
+    function start() {
+      if (started) return; started = true;
+      items.forEach(function (el) {
+        if (el.getBoundingClientRect().top >= window.innerHeight) el.classList.add('rv');
+      });
+      window.addEventListener('scroll', check, { passive: true });
+      window.addEventListener('resize', check);
+      // Safety net in case a browser skips scroll events: look again a few times a second.
+      var timer = setInterval(function () {
+        check();
+        if (!document.querySelector('.rv:not(.in)')) clearInterval(timer);
+      }, 300);
+    }
+    document.addEventListener('splash-done', start);
+    setTimeout(start, 9500);
+  })();
 
   // QR code of this page for desktop visitors.
   try {
